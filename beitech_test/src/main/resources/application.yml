@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  contextPath: /BeitechTestApp
+---
+spring:
+  profiles: local,default
+datasource:
+  beitechapp:
+    url: jdbc:h2:~/test
+    username: SA
+    password:
+    driverClassName: org.h2.Driver
+    defaultSchema:
+    maxPoolSize: 10
+    hibernate:
+      hbm2ddl.method: create-drop
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.H2Dialect
+---
+spring:
+  profiles: prod
+datasource:
+  beitechapp:
+    url: jdbc:mysql://localhost:3306/prueba4_beitech
+    username: app_user
+    password: beit3ch_test
+    driverClassName: com.mysql.jdbc.Driver
+    defaultSchema:
+    maxPoolSize: 20
+    hibernate:
+      hbm2ddl.method: validate
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect
