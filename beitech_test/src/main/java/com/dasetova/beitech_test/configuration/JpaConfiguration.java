@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.dasetova.repositories",
+@EnableJpaRepositories(basePackages = "com.dasetova.beitech_test.repositories",
 						entityManagerFactoryRef = "entityManagerFactory",
 						transactionManagerRef = "transactionManager")
 @EnableTransactionManagement

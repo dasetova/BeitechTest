@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Customer implements Serializable{
 
 	@Id
-	@Column(name="product_id")
+	@Column(name="customer_id")
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 	
@@ -26,10 +26,14 @@ public class Customer implements Serializable{
 	private String email;
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="customer_available_product", joinColumns={@JoinColumn(name="customer_id")}, inverseJoinColumns={@JoinColumn(name="product_id")})
+	@JoinTable(
+			name="customer_available_product", 
+			joinColumns={@JoinColumn(name="customer_id")}, 
+			inverseJoinColumns={@JoinColumn(name="product_id")}
+	)
 	private List<Product> availableProducts = new ArrayList<>();
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="customer")
     private List<Order> orders = new ArrayList<>();
 
 	public int getId() {

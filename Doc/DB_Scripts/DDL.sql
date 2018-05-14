@@ -20,7 +20,7 @@ CREATE TABLE `customer_available_product`(
     FOREIGN KEY (customer_id) REFERENCES `customer`(customer_id),
     FOREIGN KEY (product_id) REFERENCES `product`(product_id)
 );
-CREATE TABLE `order` (
+CREATE TABLE `order_resume` (
 	order_id INTEGER(10) NOT NULL AUTO_INCREMENT,
     customer_id INTEGER(10) NOT NULL,
     delivery_address VARCHAR(255) NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `order_detail` (
     quantity INTEGER(10) NOT NULL,
     price INTEGER(10) NOT NULL,
     PRIMARY KEY (order_detail_id),
-    FOREIGN KEY (order_id) REFERENCES `order`(order_id),
+    FOREIGN KEY (order_id) REFERENCES `order_resume`(order_id),
     FOREIGN KEY (product_id) REFERENCES `product`(product_id)
 );
 CREATE USER `app_user`@`localhost` IDENTIFIED BY 'beit3ch_test';

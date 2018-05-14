@@ -4,6 +4,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="product")
@@ -20,7 +22,7 @@ public class Product implements Serializable{
 	
 	@Column(name="price", nullable=false)
 	private int price;
-
+	
 	public int getId() {
 		return id;
 	}
@@ -44,6 +46,14 @@ public class Product implements Serializable{
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	
+
+	@Override
+	public boolean equals(Object other){
+	    if (other == null) return false;
+	    if (other == this) return true;
+	    if (!(other instanceof Product))return false;
+	    Product otherMyClass = (Product)other;
+	    return (otherMyClass.getId() == this.getId());
+	}
+		
 }

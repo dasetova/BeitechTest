@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dasetova.beitech_test.model.*;
+import com.dasetova.beitech_test.repositories.OrderRepository;
 
 @Service("orderService")
 @Transactional
@@ -16,11 +17,19 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
     private CustomerService customerService;
 	
+	@Autowired
+    private OrderDetailService orderDetailService;
+	
+	@Autowired
+    private OrderRepository orderRepository;
+	
 	public void addOrder(Order order) {
 		Customer customer = customerService.findById(order.getCustomer().getId());
-		customer.getOrders().add(order);
-		if (customerService.validateCustomerProducts(order.getCustomer().getId(), order))
-			customerService.updateCustomer(customer);
+		customer.addOrder(order);
+		if (customerService.validateCustomerProducts(order.getCustomer().getId(), order)) {
+			this.saveOrder(order);
+			orderDetailService.saveOrderOrderDetails(order);
+		}
 	}
 	
 	@Override
@@ -31,4 +40,11 @@ public class OrderServiceImpl implements OrderService{
 				.collect(Collectors.toList());
 		return ordersFiltered;
 	}
+
+	@Override
+	public void saveOrder(Order order) {
+		orderRepository.save(order);
+	}
+	
+	
 }

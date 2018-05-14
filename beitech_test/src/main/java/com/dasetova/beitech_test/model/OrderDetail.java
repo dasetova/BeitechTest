@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.omg.CORBA.ServerRequest;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="order_detail")
 public class OrderDetail implements Serializable{
@@ -19,9 +24,14 @@ public class OrderDetail implements Serializable{
 	@Column(name="price", nullable=false)
 	private int price;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@PrimaryKeyJoinColumn
+	@ManyToOne
+    @JoinColumn(name="product_id", nullable=false)
     private Product product;
+	
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope=ServerRequest.class)
+	@ManyToOne
+    @JoinColumn(name="order_id", nullable=false)
+	private Order order_resume;
 
 	public int getId() {
 		return id;
@@ -54,5 +64,15 @@ public class OrderDetail implements Serializable{
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+	public Order getOrder_resume() {
+		return order_resume;
+	}
+
+	public void setOrder_resume(Order order_resume) {
+		this.order_resume = order_resume;
+	}
+	
+	
 	
 }

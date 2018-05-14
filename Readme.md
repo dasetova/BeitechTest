@@ -14,6 +14,7 @@ Se realizaron los siguientes cambios al MER presentado en la prueba para cumplir
 * Adición campo price a product
 * Nueva tabla customer_available_product
 * Eliminación campo product_description (no se ve necesario debido a relacion con product)
+* Cambio de nombre a la tabla order por errores generados en SQL
 
 ## Creación de la base de datos
 En la carpeta BD se encuentran los scrips necesarios para la creación de la base de datos:

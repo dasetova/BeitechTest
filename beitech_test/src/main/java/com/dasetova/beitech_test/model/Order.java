@@ -8,9 +8,13 @@ import java.util.List;
 import javax.persistence.*;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.omg.CORBA.ServerRequest;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name="order")
+@Table(name="order_resume")
 public class Order implements Serializable{
 
 	@Id
@@ -25,11 +29,12 @@ public class Order implements Serializable{
 	@Column(name="creation_date", nullable=false)
 	private LocalDate creationDate;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="order_resume")
     private List<OrderDetail> orderDetails = new ArrayList<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="id", scope=ServerRequest.class)
+	@ManyToOne
+    @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 
 	public int getId() {
