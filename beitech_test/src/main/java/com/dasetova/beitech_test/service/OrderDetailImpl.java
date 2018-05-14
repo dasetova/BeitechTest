@@ -22,10 +22,10 @@ public class OrderDetailImpl implements OrderDetailService{
 
 	@Override
 	public void saveOrderOrderDetails(Order order) {
-		for(OrderDetail orderDetail : order.getOrderDetails()) {
+		order.getOrderDetails().forEach(orderDetail->{ 
 			orderDetail.setOrder_resume(order);
 			this.saveOrderDetail(orderDetail);
-		}
+		});
 	}
 
 }

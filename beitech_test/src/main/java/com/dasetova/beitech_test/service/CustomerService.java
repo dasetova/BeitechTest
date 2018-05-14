@@ -1,5 +1,7 @@
 package com.dasetova.beitech_test.service;
 
+import java.util.List;
+
 import com.dasetova.beitech_test.model.Customer;
 import com.dasetova.beitech_test.model.Order;
 
@@ -9,4 +11,5 @@ public interface CustomerService {
 	Customer findById(int id);
 	void updateCustomer(Customer customer);
 	boolean validateCustomerProducts(int id, Order order);
+	List<Customer> getAllCustomers();
 }

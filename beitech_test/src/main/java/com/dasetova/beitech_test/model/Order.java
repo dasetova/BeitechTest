@@ -29,6 +29,9 @@ public class Order implements Serializable{
 	@Column(name="creation_date", nullable=false)
 	private LocalDate creationDate;
 	
+	@Column(name="total_price", nullable=true)
+	private int totalPrice;
+	
 	@OneToMany(mappedBy="order_resume")
     private List<OrderDetail> orderDetails = new ArrayList<>();
 	
@@ -75,6 +78,14 @@ public class Order implements Serializable{
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 	
 	

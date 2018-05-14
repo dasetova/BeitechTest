@@ -26,7 +26,8 @@ public class OrderServiceImpl implements OrderService{
 	public void addOrder(Order order) {
 		Customer customer = customerService.findById(order.getCustomer().getId());
 		customer.addOrder(order);
-		if (customerService.validateCustomerProducts(order.getCustomer().getId(), order)) {
+		if (customerService.validateCustomerProducts(order.getCustomer().getId(), order)
+				&& this.validateOrder(order)) {
 			this.saveOrder(order);
 			orderDetailService.saveOrderOrderDetails(order);
 		}
@@ -44,6 +45,15 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void saveOrder(Order order) {
 		orderRepository.save(order);
+	}
+
+	@Override
+	public boolean validateOrder(Order order) {
+		int sum = 0;
+		for(OrderDetail o: order.getOrderDetails()) {
+			sum+=o.getQuantity();
+		}
+		return (sum<=5);
 	}
 	
 	

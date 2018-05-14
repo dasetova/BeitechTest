@@ -12,4 +12,6 @@ public interface OrderService {
 	List<Order> ordersByCustomerAndDates (int customer_id, LocalDate lowerDate, LocalDate upperDate);
 	
 	void saveOrder(Order order);
+	
+	boolean validateOrder(Order order);
 }
