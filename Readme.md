@@ -9,7 +9,7 @@ Daniel Sebastian Torres Vargas
 Bogota
 Mayo, 2018
 
-##Documentacion
+## Documentacion
 Dentro del repositorio se creo una carpeta Doc que cuenta con:
 * Diagramas MER y Clases.
 * Scripts de creación de la base de datos.
@@ -32,10 +32,10 @@ En la carpeta BD se encuentran los scrips necesarios para la creación de la bas
 * **DDL** - Script que contiene la creación de la base de datos, tablas y usuario de aplicación (con sus privilegios)
 * **DML** - Script que contiene los insert iniciales a las tablas customer, product y customer_available_product
 
-##Conexion app a base de datos
+## Conexion app a base de datos
 La conexion a la base de datos se encuentra dentro del archivo application.yml la cual usa por defecto la base y usuario creados con el script **DDL**.
 
-##Desplegar y probar
+## Desplegar y probar
 * Clonar el repositorio
 * Ejecutar los scripts de base de datos DDL y DML
 * Ejecutar el código fuente con maven: **mvn spring-boot:run**
